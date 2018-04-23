@@ -1,0 +1,125 @@
+bin_framework/
+obj_framework/
+
+# User-specific files
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# User-specific files (MonoDevelop/Xamarin Studio)
+*.userprefs
+
+# Build results
+[Dd]ebug/
+[Dd]ebugPublic/
+[Rr]elease/
+[Rr]eleases/
+[Xx]64/
+[Xx]86/
+[Bb]uild/
+bld/
+[Bb]in/
+[Oo]bj/
+
+.vs/
+_ReSharper*/
+*.[Rr]e[Ss]harper
+*.DotSettings.user
+
+
+# Click-Once directory
+publish/
+
+# NuGet Packages
+*.nupkg
+# The packages folder can be ignored because of Package Restore
+**/packages/*
+# except build/, which is used as an MSBuild target.
+!**/packages/build/
+# Uncomment if necessary however generally it will be regenerated when needed
+#!**/packages/repositories.config
+# NuGet v3's project.json files produces more ignoreable files
+*.nuget.props
+*.nuget.targets
+
+# Backup & report files from converting an old project file
+# to a newer Visual Studio version. Backup files are not needed,
+# because we have git ;-)
+_UpgradeReport_Files/
+Backup*/
+UpgradeLog*.XML
+UpgradeLog*.htm
+*.TMP
+WebSite/App_Public_Data/PlayerUpdates
+WebSite/App_Data/PlayerUpdates
+WebSite/App_Public_Data/PersonalMusic
+WebSite/App_Data/PersonalMusic
+WebSite/App_Public_Data/PersonalVideo
+WebSite/App_Data/PersonalVideo
+WebSite/App_Public_Data/Video
+WebSite/App_Data/Video
+WebSite/App_Public_Data/Music
+WebSite/App_Data/Music
+WebSite/App_Public_Data/Docs
+WebSite/Analyzer/
+WebSite/app/ng2/
+WebSite/Logs/
+WebSite/Analyzer/gstreamersharpglue-0.10.dll
+WebSite/Analyzer/media-analyzer.exe
+WebSite/Analyzer/mingwm10.dll
+WebSite/Analyzer/VbrfixConsole.exe
+WebSiteNg2/node_modules/
+WebSiteNg2/dist/
+WebSite/app/ng2/
+WebSite/Analyzer/Logs/
+*.orig
+.idea/*
+WebSite/NLog.config
+WebSite/Smtp.config
+WebSite/Connections.config
+
+/MarketPlayer.Client.Mono/Resources/BuildTime.txt
+
+*.log
+
+/MarketPlayer.Client.Mono/Properties/launchSettings.json
+MarketMusic.MusicRegister.Web/wwwroot/Files/*
+/MarketMusic.MusicRegister.Web/wwwroot/Public
+/MarketMusic.MusicRegister.Web/wwwroot/Tmp
+
+/MarketPlayer.Bootstrapper.Linux/tools
+/MarketPlayer.Client.Linux/tools
+/MarketPlayer.Client.Mono/tools
+/MarketPlayer.Client.Windows/tools/MarketPlayer.Client.Windows.Splashscreen.exe
+
+/BuildScripts/dist/
+/BuildScripts/
+/BuildScripts/dist-raspberry
+/BuildScripts/temp
+/BuildScripts/tools
+/MarketPlayer.Bootstrapper.Linux/tools
+
+/MarketPlayer.CoreTestApp/tools/
+/WebSite/App_Data/MarketPlayerDB.mdf
+/WebSite/App_Data/MarketPlayerDB_log.ldf
+/MarketPlayer.Client.Linux/tools
+/MarketPlayer.Common/obj_framework
+/MarketPlayer.CoreTestApp/tools
+obj_framework
+nlog-internal.log
+/MarketPlayer.Client.Windows/tools/MarketPlayer.Client.Windows.Splashscreen.exe
+/WebSite/App_Data/MarketPlayerDB.mdf
+/WebSite/App_Data/MarketPlayerDB_log.ldf
+
+*.rej
+*.mdf
+*.ldf
+*.psess
+*.vspx
+/.project
+.idea/
+
+/WebSiteNg2/package-lock.json
+
+CodeMaid.config
