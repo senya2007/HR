@@ -19,9 +19,9 @@ namespace ReviewMe.Migrations
             //  You can use the DbSet<T>.AddOrUpdate() helper extension method 
             //  to avoid creating duplicate seed data.
 
-            if (!context.Players.Any())
+            if (!context.Stores.Any())
             {
-                context.Players.Add(new Models.Player { Name = "player1" });
+                context.Stores.Add(new Models.Store { Name = "player1" });
                 context.SaveChanges();
             }
         }

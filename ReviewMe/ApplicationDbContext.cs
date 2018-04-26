@@ -9,7 +9,7 @@ namespace ReviewMe
 {
     public class ApplicationDbContext: DbContext
     {
-        public DbSet<Player> Players { get; set; }
+        public DbSet<Store> Stores { get; set; }
 
         public ApplicationDbContext(): base("ReviewMe")
         {

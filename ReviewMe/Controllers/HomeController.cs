@@ -8,25 +8,22 @@ using System.Web.Http;
 
 namespace ReviewMe.Controllers
 {
-    [Route("api/home/")] 
     public class HomeController : ApiController
     {
+        private static IAsyncLock _lock = new AsyncLock();
+
         [HttpGet]
         public IHttpActionResult Index()
         {
             return Ok("Api started");
-        }
-
-        private static IAsyncLock _lock = new AsyncLock();
+        }        
 
         [HttpGet]
         [Route("add")]
-        public async Task<IHttpActionResult> AddHumanVisitors(string player, int count)
+        public async Task<IHttpActionResult> AddHumanVisitors(string storeName, int count)
         {          
             {
-                await Task.Delay(1000);
-
-                if (DashboardStatProcessor.AddHumanVisitors(player, count).Result)
+                if (DashboardStatProcessor.AddHumanVisitors(storeName, count).Result)
                 {
                     return Ok();
                 }
@@ -36,18 +33,18 @@ namespace ReviewMe.Controllers
 
         [HttpGet]
         [Route("visitors/count")]
-        public int GetVisitorsCount(string player)
+        public int GetVisitorsCount(string storeName)
         {
-            return DashboardStatProcessor.GetVisitorsCount(player);            
+            return DashboardStatProcessor.GetVisitorsCount(storeName);            
         }
 
         [HttpDelete]
         [Route("visitors/count")]
-        public async void DeleteVisitorsCount(string player)
+        public async void DeleteVisitorsCount(string storeName)
         {
             using (await _lock.LockAsync())
             {
-                DashboardStatProcessor.GetVisitorsCount(player);
+                DashboardStatProcessor.GetVisitorsCount(storeName);
             }
         }
     }

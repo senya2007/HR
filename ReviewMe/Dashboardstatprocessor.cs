@@ -14,7 +14,7 @@ namespace ReviewMe
         public static async Task<bool> AddHumanVisitors(string playerName, int value)
         {
             using (var db = new ApplicationDbContext())            {
-                var player = await db.Players.SingleAsync(x => x.Name == playerName);
+                var player = await db.Stores.SingleAsync(x => x.Name == playerName);
                 player.HumanCount += value;                
                 db.SaveChanges();
             }                           
@@ -25,7 +25,7 @@ namespace ReviewMe
         {
             using (var db = new ApplicationDbContext())
             {
-                var player = db.Players.FirstOrDefault(x => x.Name == playerName);
+                var player = db.Stores.FirstOrDefault(x => x.Name == playerName);
                 return player.HumanCount;
             }
         }
@@ -34,7 +34,7 @@ namespace ReviewMe
         {
             using (var db = new ApplicationDbContext())
             {
-                var player = db.Players.FirstOrDefault(x => x.Name == playerName);
+                var player = db.Stores.FirstOrDefault(x => x.Name == playerName);
                 player.HumanCount = 0;
                 db.SaveChanges();
             }

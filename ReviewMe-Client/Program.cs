@@ -6,43 +6,60 @@ using System.Threading.Tasks;
 
 namespace ReviewMe_Client
 {
-
-    public interface IGitHubApi
+    public interface IStoreApi
     {
         [Get("/visitors/count")]
-        Task<int> FetchUserAsync(string player);
+        Task<int> FetchCountAsync(string player);
 
         [Get("/add")]
-        Task AddHumanVisitors(string player, int count);
+        Task AddHumanVisitorsAsync(string player, int count);
 
         [Delete("/visitors/count")]
-        Task DeleteVisitorsCount(string player);
+        Task ResetVisitorsCountAsync(string player);
     }
-
 
     class Program
     {
         static void Main(string[] args)
         {
             MainAsync(args).Wait();
+            Console.WriteLine("Press any key for exit...");
+            Console.ReadLine();
         }
 
         static async Task MainAsync(string[] args)
         {
-            IGitHubApi api = RestClient.For<IGitHubApi>("http://localhost:60404");
-                        
-            await api.DeleteVisitorsCount("player1");
+            IStoreApi api = RestClient.For<IStoreApi>("http://localhost:60404");
+
+            const int count = 10;
+            int expectedValue = Enumerable.Range(0, count).Sum();
+
+            const string storeName = "player1"; 
+
+            await api.ResetVisitorsCountAsync(storeName);
 
             var list = new List<Task>();
-            for(int i = 0; i < 10; i++)
-            {                
+            for(int i = 0; i < count; i++)
+            {
+                int value = i;
                 list.Add(Task.Run(async () => 
                 {                    
-                    await api.AddHumanVisitors("player1", i);
+                    await api.AddHumanVisitorsAsync(storeName, value);
                 }));
             }
-            var res = await api.FetchUserAsync("player1");
-            Console.WriteLine(res);
+            
+            Task.WaitAll(list.ToArray());
+
+            var result = await api.FetchCountAsync(storeName);
+
+            if (result == expectedValue)
+            {
+                Console.WriteLine("Success");
+            }
+            else
+            {
+                Console.WriteLine("Failed!"); 
+            }
         }
     }
 }

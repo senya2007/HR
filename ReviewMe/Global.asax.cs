@@ -12,16 +12,6 @@ namespace ReviewMe
         protected void Application_Start()
         {
             GlobalConfiguration.Configure(WebApiConfig.Register);
-
-            using(var db = new ApplicationDbContext())
-            {
-                foreach(var item in db.Players)
-                {
-                    item.HumanCount = 0;
-                }
-
-                db.SaveChanges();
-            }
         }
     }
 }

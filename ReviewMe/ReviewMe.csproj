@@ -95,14 +95,13 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="AsyncLock.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\PIngController.cs" />
     <Compile Include="Dashboardstatprocessor.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="IAsyncLock.cs" />
     <Compile Include="Migrations\Configuration.cs" />
-    <Compile Include="Models\Player.cs" />
+    <Compile Include="Models\Store.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -114,9 +113,7 @@
       <DependentUpon>Web.config</DependentUpon>
     </None>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="App_Data\" />
-  </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
