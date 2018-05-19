@@ -50,6 +50,12 @@
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
+    <Reference Include="LightInject, Version=5.1.3.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\LightInject.5.1.3\lib\net46\LightInject.dll</HintPath>
+    </Reference>
+    <Reference Include="LightInject.WebApi, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\LightInject.WebApi.2.0.0\lib\net46\LightInject.WebApi.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=1.0.8.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.8\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
     </Reference>
@@ -91,18 +97,23 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ApplicationDbContext.cs" />
+    <Compile Include="DAL\ApplicationDbContext.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
-    <Compile Include="AsyncLock.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Dashboardstatprocessor.cs" />
+    <Compile Include="DAL\DashboardStatProcessorDAL.cs" />
+    <Compile Include="DAL\IDashboardStatProcessorDAL.cs" />
+    <Compile Include="DAL\InitializeDB.cs" />
+    <Compile Include="Exceptions\VisitorNotFoundException.cs" />
+    <Compile Include="Services\Dashboardstatprocessor.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="IAsyncLock.cs" />
+    <Compile Include="Helpers\AsyncLock.cs" />
+    <Compile Include="Helpers\IAsyncLock.cs" />
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Store.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\IDashboardStatProcessor.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
