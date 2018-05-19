@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ReviewMe.Services;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
@@ -10,42 +11,38 @@ namespace ReviewMe.Controllers
 {
     public class HomeController : ApiController
     {
-        private static IAsyncLock _lock = new AsyncLock();
+        IDashboardStatProcessorService dashboardStatProcessor;
+
+        public HomeController(IDashboardStatProcessorService dashboardStatProcessor)
+        {
+            this.dashboardStatProcessor = dashboardStatProcessor;
+        }
 
         [HttpGet]
         public IHttpActionResult Index()
         {
             return Ok("Api started");
-        }        
+        }
 
-        [HttpGet]
-        [Route("add")]
-        public async Task<IHttpActionResult> AddHumanVisitors(string storeName, int count)
-        {          
-            {
-                if (DashboardStatProcessor.AddHumanVisitors(storeName, count).Result)
-                {
-                    return Ok();
-                }
-            }
-            return InternalServerError();
+        [HttpPost]
+        [Route("visitors/add/")]
+        public async Task<int> AddHumanVisitors(string storeName, int count)
+        {
+            return await dashboardStatProcessor.AddHumanVisitors(storeName, count);
         }
 
         [HttpGet]
-        [Route("visitors/count")]
-        public int GetVisitorsCount(string storeName)
+        [Route("visitors/count/{storeName}")]
+        public async Task<int> GetVisitorsCount(string storeName)
         {
-            return DashboardStatProcessor.GetVisitorsCount(storeName);            
+            return await dashboardStatProcessor.GetVisitorsCount(storeName);
         }
 
         [HttpDelete]
-        [Route("visitors/count")]
-        public async void DeleteVisitorsCount(string storeName)
+        [Route("visitors/reset/{storeName}")]
+        public async Task ResetVisitorsCountAsync(string storeName)
         {
-            using (await _lock.LockAsync())
-            {
-                DashboardStatProcessor.GetVisitorsCount(storeName);
-            }
+            await dashboardStatProcessor.DeleteVisitorsCount(storeName);
         }
     }
 }

@@ -16,8 +16,8 @@ namespace ReviewMe
 
             config.Routes.MapHttpRoute(
                 name: "DefaultApi",
-                routeTemplate: "api/{controller}/{id}",
-                defaults: new { controller = "home", id = RouteParameter.Optional }
+                routeTemplate: "{controller}/{action}/{id}",
+                defaults: new { controller = "home", action = "index", id = RouteParameter.Optional }
             );
         }
     }
