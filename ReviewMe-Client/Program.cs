@@ -8,14 +8,14 @@ namespace ReviewMe_Client
 {
     public interface IStoreApi
     {
-        [Get("/visitors/count")]
-        Task<int> FetchCountAsync(string player);
+        [Get("/visitors/count/{player}")]
+        Task<int> GetVisitorsCount([Path] string player);
 
-        [Get("/add")]
-        Task AddHumanVisitorsAsync(string player, int count);
+        [Post("/visitors/add/")]
+        Task AddHumanVisitors([Query]string storeName, [Query] int count);
 
-        [Delete("/visitors/count")]
-        Task ResetVisitorsCountAsync(string player);
+        [Delete("/visitors/reset/{player}")]
+        Task ResetVisitorsCountAsync([Path] string player);
     }
 
     class Program
@@ -34,23 +34,23 @@ namespace ReviewMe_Client
             const int count = 10;
             int expectedValue = Enumerable.Range(0, count).Sum();
 
-            const string storeName = "player1"; 
+            const string storeName = "player1";
 
             await api.ResetVisitorsCountAsync(storeName);
 
             var list = new List<Task>();
-            for(int i = 0; i < count; i++)
+            for (int i = 0; i < count; i++)
             {
                 int value = i;
-                list.Add(Task.Run(async () => 
-                {                    
-                    await api.AddHumanVisitorsAsync(storeName, value);
+                list.Add(Task.Run(async () =>
+                {
+                    await api.AddHumanVisitors(storeName, value);
                 }));
             }
-            
+
             Task.WaitAll(list.ToArray());
 
-            var result = await api.FetchCountAsync(storeName);
+            var result = await api.GetVisitorsCount(storeName);
 
             if (result == expectedValue)
             {
@@ -58,7 +58,7 @@ namespace ReviewMe_Client
             }
             else
             {
-                Console.WriteLine("Failed!"); 
+                Console.WriteLine("Failed!");
             }
         }
     }

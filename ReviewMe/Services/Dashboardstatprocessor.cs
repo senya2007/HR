@@ -1,4 +1,5 @@
-﻿using ReviewMe.Helpers;
+﻿using ReviewMe.DAL;
+using ReviewMe.Helpers;
 using ReviewMe.Services;
 using System;
 using System.Collections.Generic;
